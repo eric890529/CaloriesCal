@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>index</title>
+</head>
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+<style>
+    h1 {
+        font-family: 'Lobster', cursive;
+        font-size: 50px;
+        position: absolute;
+        top: -30px;
+        left: 30px;
+        color: black;
+    }
+
+    body {
+        margin: 0px;
+        padding: 0px;
+        background-image: url('background.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+    }
+
+
+    .button {
+        border: none;
+        color: black;
+        padding: 5px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+    a {
+        cursor: pointer;
+    }
+
+    .format1 {
+        text-align: center;
+        position: relative;
+        background-color: rgba(250, 224, 121, 0.5);
+        left: 50%;
+        width: 50%;
+        border-radius: 20px;
+        transform: translate(-50%, 15%);
+    }
+
+    .format2 {
+        text-align: right;
+        position: relative;
+        background-color: rgba(250, 224, 121, 0.5);
+        left: 50%;
+        width: 50%;
+        border-radius: 20px;
+        transform: translate(-50%, 15%);
+    }
+
+    .format3 {
+        position: relative;
+        background-color: rgba(250, 224, 121, 0.5);
+        left: 50%;
+        width: 50%;
+        border-radius: 20px;
+        transform: translate(-50%, 15%);
+
+    }
+
+
+    .data {
+        margin-right: 300px;
+    }
+
+    nav ul {
+        background-color: rgba(250, 224, 121, 0);
+        list-style: none;
+        /* 移除項目符號 */
+        margin: 0;
+        padding: 0;
+    }
+
+    nav a {
+        color: black;
+        /* 移除超連結顏色 */
+        display: block;
+        /* 讓 <a> 填滿 <li> */
+        font-size: 1.2rem;
+        padding: 25px;
+        text-decoration: none;
+        /* 移除超連結底線 */
+    }
+
+    nav a:hover {
+        color: #e3c887;
+        text-decoration: underline;
+    }
+
+    .flex-nav {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    h2 {
+        text-align: center;
+        font-family: 'Long Cang', cursive;
+        font-size: 50px;
+        margin: 0px;
+    }
+
+    .calories {
+        font-size: 40px;
+        margin: 0px;
+        font-family: 'Long Cang', cursive;
+        color: rgb(0, 46, 252)
+    }
+
+    .food {
+        line-height: 5px;
+        font-size: 30px;
+        padding: 2px;
+        margin: 0px;
+        font-family: 'Long Cang', cursive;
+        color: rgb(2, 2, 2)
+    }
+
+
+    .tabcontent {
+        display: none;
+    }
+
+    li a.active {
+        color: #e3c887;
+    }
+
+    .record {
+        cursor: pointer;
+        background-color: aqua;
+        width: 50%;
+        text-align: center;
+        margin: 0 auto;
+        border-radius: 30px;
+        margin-bottom: 10px;
+    }
+
+    .meal {
+        cursor: pointer;
+        background-color: aqua;
+        width: 30%;
+        text-align: center;
+        margin: 0 auto;
+        border-radius: 30px;
+        margin-bottom: 10px;
+    }
+
+    .meal.active {
+        background: rgb(240, 90, 21);
+    }
+
+    .record.active {
+        background: rgb(240, 90, 21);
+    }
+
+    .myfood {
+        cursor: pointer;
+        background-color: rgb(11, 196, 252);
+        width: 50%;
+        text-align: center;
+        margin: 0 auto;
+        border-radius: 30px;
+        margin-bottom: 10px;
+    }
+
+
+    /*background-color: rgb(204, 191, 172);*/
+</style>
+
+<body>
+    <h1>Calories Calculate</h1>
+    <div style="margin-top: 20px;">
+        <nav style="margin-right: 50px;">
+            <ul class="flex-nav">
+                <li><a class="tablinks" onclick="openp(event, 'page1');">今日攝取</a></li>
+                <li><a class="tablinks" onclick="openp(event, 'page2');">新增食物</a></li>
+                <li><a id="MyFood" class="tablinks" onclick="openp(event, 'page3');">我的食物</a></li>
+                <li><a id="MyRecord" class="tablinks" onclick="openp(event, 'page4');">新增紀錄</a></li>
+                <li><a class="tablinks" onclick="openp(event, 'page5');">統計報表</a></li>
+                <li><a href="signup.html">註冊</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div id="page1" class="tabcontent" style="display: block;">
+        <h2>今日攝取</h2>
+        <div class="format1">
+            <h2>總熱量攝取</h2>
+            <p id=num class="calories"></p>
+            <p id=food class="food"></p>
+        </div>
+    </div>
+    <div id="page2" class="tabcontent">
+        <h2>新增食物</h2>
+        <div class="format2">
+            <br>
+            <span class="data">
+                <label for="fname">food:</label>
+                <input type="text" id="fname" name="fname">
+            </span><br><br>
+            <span class="data">
+                <label for="fCalories">Calories:</label>
+                <input type="number" id="fCalories" name="fCalories">
+            </span><br>
+            <input class="button" style="margin-right: 50px;" id="FoodSubmit" type="button" value="新增">
+        </div>
+    </div>
+    <div id="page3" class="tabcontent">
+        <h2>MyFood</h2>
+        <div id=myfood class="format1">
+            <!--
+                data here
+            -->
+        </div>
+    </div>
+    <div id="page4" class="tabcontent">
+        <h2>data3</h2>
+        <div id="myrecord" class="format3" style="text-align: center;">
+
+
+        </div>
+        <br><br>
+        <div id="choosemeal" class="format3" style="text-align: center; display: none;">
+            <br><br>
+            <div class="meal" onclick="activeMeal(event)" id="早餐" value="b">早餐</div>
+            <div class="meal" onclick="activeMeal(event)" id="午餐" value="l">午餐</div>
+            <div class="meal" onclick="activeMeal(event)" id="晚餐" value="d">晚餐</div>
+            <div class="meal" onclick="activeMeal(event)" id="其他" value="o">其他</div>
+            <br><br>
+            <input type="date" id="myDate">
+            <br><br>
+            <input class="button" id="submit" style="margin:auto" type="button" value="新增">
+        </div>
+    </div>
+    <div id="page5" class="tabcontent">
+        <h2>data4</h2>
+        <div class="sign">
+
+
+        </div>
+    </div>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    var record = [
+        [
+            3,
+            "薯條",
+            200,
+            "o"
+        ],
+        [
+            10,
+            "熱狗",
+            100,
+            "l"
+        ],
+        [
+            11,
+            "可樂",
+            200,
+            "d"
+        ],
+        [
+            11,
+            "牛排",
+            200,
+            "o"
+        ],
+        [
+            11,
+            "milk",
+            200,
+            "d"
+        ]
+    ]
+    var data = [
+        [
+            1,
+            "豬豬",
+            13,
+        ],
+        [
+            2,
+            "熱狗",
+            100
+        ],
+        [
+            3,
+            "薯條",
+            200
+        ]
+
+    ]
+    var sum = 0;
+    //fucntion
+    $(document).ready(function () {
+        showTodayData(record);
+        $("#FoodSubmit").click(function () {
+            addfood(data);
+            for (var k in data) {
+                console.log(k, data[k]);
+            }
+        })
+        $("#MyFood").click(function () {
+            removefood(data, myFood, "myfood");
+        })
+        $("#MyRecord").click(function () {
+            //設定預設版面
+            document.getElementById("choosemeal").style.display = "none";
+            tablinks = document.getElementsByClassName("meal");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            var activeB = document.getElementById("早餐").className += " active"
+
+            removefood(data, showFood, "myrecord");
+        })
+        $("#submit").click(function () {
+            var foodid = document.getElementsByClassName("record active")
+            var fId = foodid[0].value
+            console.log("fId=" + fId)
+            var choosemeal = document.getElementsByClassName("meal active")
+            meal = choosemeal[0].getAttribute("value")
+            console.log("meal=" + meal)
+            var x = document.getElementById("myDate");
+            var date = x.value;
+            console.log("date=" + date)
+            /*$.post("/signup",
+                {
+                   // "token": token,
+                    "fId": fId,
+                    "meal": meal,
+                    "data":data
+                },
+                function (data, status) {
+                    if (data == "success") {
+                        alert("成功註冊");
+                        // 跳到登入後
+                    } else {
+                        alert("註冊失敗");
+                    }
+                });*/
+            alert("成功新增紀錄")
+        });
+    });
+
+    function removefood(array, callback, id) {
+        document.getElementById(id).innerHTML = "";
+        callback(array)
+    }
+
+    function addfood(array) {
+        var newfood =
+            [
+                array[array.length - 1][0] + 1,
+                document.getElementById('fname').value,
+                parseInt(document.getElementById('fCalories').value, 10),
+            ]
+        var checkCalories = document.getElementById('fCalories').value
+        var checkfood = document.getElementById('fname').value
+        if(checkAddForm(checkCalories,checkfood)){
+            console.log("t")
+            array.push(newfood)
+            alert("成功新增食物")
+        }
+    }
+    function checkAddForm(calories, food) {
+        if (food.length == 0) {
+            alert("食物欄位不可為空值")
+            return false
+        } 
+        if (calories == 0) {
+            alert("熱量欄位不可為空值")
+            return false
+        } 
+        return true;
+    }
+
+    function showFood(array) {
+        addRecordChild(array, "div", "myrecord")
+    }
+
+    function newRecord() {
+
+
+    }
+
+    Date.prototype.yyyymmdd = function () {
+        var mm = this.getMonth() + 1; // getMonth() is zero-based
+        var dd = this.getDate();
+
+        return [this.getFullYear(),
+        (mm > 9 ? '' : '0') + mm,
+        (dd > 9 ? '' : '0') + dd
+        ].join('-');
+    };
+
+    function chooseFood(evt) {
+        tablinks = document.getElementsByClassName("record");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        evt.currentTarget.className += " active";
+
+        document.getElementById("choosemeal").style.display = "block";
+        var date = new Date();
+        document.getElementById("myDate").defaultValue = date.yyyymmdd();
+    }
+
+    function activeMeal(evt) {
+        //console.log("meal")
+        tablinks = document.getElementsByClassName("meal");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        evt.currentTarget.className += " active";
+
+
+    }
+
+
+    function showTodayData(array) {
+        var bfood = [];
+        var lfood = [];
+        var dfood = [];
+        var ofood = [];
+        sum = 0;
+        for (var i = 0; i < array.length; i++) {
+            if (array[i][3] == 'b') {
+                bfood[bfood.length] = [
+                    array[i][1],
+                    array[i][2]
+                ]
+            } else if (array[i][3] == 'l') {
+                lfood[lfood.length] = [
+                    array[i][1],
+                    array[i][2]
+                ]
+            } else if (array[i][3] == 'd') {
+                dfood[dfood.length] = [
+                    array[i][1],
+                    array[i][2]
+                ]
+            } else {
+                ofood[ofood.length] = [
+                    array[i][1],
+                    array[i][2]
+                ]
+            }
+        }
+        addMealChild("早餐:", "P", "food")
+        addFoodChild(bfood, "P", "food")
+
+        addMealChild("午餐:", "P", "food")
+        addFoodChild(lfood, "P", "food")
+
+        addMealChild("晚餐:", "P", "food")
+        addFoodChild(dfood, "P", "food")
+
+        addMealChild("其他:", "P", "food")
+        addFoodChild(ofood, "P", "food")
+
+        document.getElementById("num").innerHTML = sum;
+    }
+
+    function addRecordChild(array, tag, id) {
+        for (var i = 0; i < array.length; i++) {
+            node = document.createElement(tag);
+            node.className = "record";
+            // node.onclick = activeFood;
+            node.onclick = chooseFood;
+            node.value = array[i][0];
+            node.id = array[i][1];
+            textnode = document.createTextNode(array[i][1] + ":" + array[i][2]);
+            node.appendChild(textnode);
+            document.getElementById(id).appendChild(node);
+        }
+    }
+
+    function addFoodChild(array, tag, id) {
+        for (var i = 0; i < array.length; i++) {
+            sum += array[i][1]
+            node = document.createElement(tag);
+            textnode = document.createTextNode(array[i][0] + " + " + array[i][1]);
+            node.appendChild(textnode);
+            document.getElementById(id).appendChild(node);
+        }
+    }
+
+    function addMealChild(meal, tag, id) {
+        var node = document.createElement(tag);
+        var textnode = document.createTextNode(meal);
+        node.appendChild(textnode);
+        document.getElementById(id).appendChild(node);
+    }
+
+    function myFood(array) {
+        for (var i = 0; i < array.length; i++) {
+            node = document.createElement("DIV");
+            node.className = "myfood"
+            textnode = document.createTextNode(array[i][1] + " : " + array[i][2]);
+            node.appendChild(textnode);
+            document.getElementById("myfood").appendChild(node);
+        }
+
+    }
+
+    function openp(evt, cityName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" ancd remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(cityName).style.display = "block";
+
+
+        //var acfood = document.getElementById("早餐").className+=" active"
+        /*tablinks1 = document.getElementsByClassName("meal");
+        tablinks1[0].className = tablinks1[0].className.replace(" active", "");*/
+
+
+        evt.currentTarget.className += " active";
+    }
+
+</script>
+
+</html>
+
+<!--  
+
+
+
+-->

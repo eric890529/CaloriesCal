@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>登入</title>
+</head>
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+<style>
+    h1 {
+        font-family: 'Lobster', cursive;
+        font-size: 50px;
+        position: absolute;
+        top: -30px;
+        left: 30px;
+        color: black;
+    }
+
+    body {
+        margin: 0px;
+        padding: 0px;
+        background-image: url('background2.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+    }
+
+    /* div {
+        padding: 5px;
+        width: 100%;
+    }*/
+
+    .button {
+        border: none;
+        color: black;
+        padding: 5px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+    a {
+        color: brown;
+        text-decoration: none;
+    }
+
+    .sign {
+        text-align: center;
+        position: relative;
+        background-color: rgba(250, 224, 121, 0.5);
+        left: 50%;
+        width: 30%;
+        border-radius: 15px;
+        transform: translate(-50%, 30%);
+    }
+
+    nav ul {
+        background-color: rgba(250, 224, 121, 0);
+        list-style: none;
+        /* 移除項目符號 */
+        margin: 0;
+        padding: 0;
+    }
+
+    nav a {
+        color: black;
+        /* 移除超連結顏色 */
+        display: block;
+        /* 讓 <a> 填滿 <li> */
+        font-size: 1.2rem;
+        padding: 25px;
+        text-decoration: none;
+        /* 移除超連結底線 */
+    }
+
+    nav a:hover {
+        color: #e3c887;
+        text-decoration: underline;
+    }
+
+    .flex-nav {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    /*background-color: rgb(204, 191, 172);*/
+</style>
+
+<body>
+    <h1>Calories Calculate</h1>
+    <div style="margin-top: 20px;">
+        <nav style="margin-right: 50px;">
+            <ul class="flex-nav">
+                <li><a href="#">新增食物</a></li>
+                <li><a href="#">我的食物</a></li>
+                <li><a href="#">新增紀錄</a></li>
+                <li><a href="#">統計報表</a></li>
+                <li><a href="signup.html">註冊</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="sign">
+        <form><br>
+            <label for="account">帳號:</label>
+            <input type="text" id="account" name="account"><br><br>
+            <label for="pwd">密碼:</label>
+            <input type="password" id="pwd" name="pwd"><br><br>
+            <button class="button">登入</button>
+        </form>
+        <br>
+        <a href="signup.html">註冊</a> <a href="#">忘記密碼?</a>
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="./sha3.min.js"></script>
+<script>
+    fakeToken = "eyJhbGciOiJhZXMxMjgiLCJ0eXAiOiJKV1QifQ==.eyJleHAiOjE2MDUwMjI4ODQsIm5hbWUiOiJoZWxsb3dvcmxkIiwidUlkIjoyfQ==.uwJcs92EylsBQzP4Fte8WFklWByraCuGxriyv9EQenE="
+    $(document).ready(function () {
+        $("#signin").click(function () {
+            ac = $("#account").val()
+            pwd = $("#pwd").val()
+            hashed = sha3_256(pwd)
+           /* $.post("/signin",
+                {
+                    account: ac,
+                    password: hashed
+                },
+                function (data, status) {
+                    if (data != "") {
+                        localStorage.setItem("token", data);
+                    }
+                }).fail(function () {
+                    //testing
+                    //alert( "帳號密碼錯誤");
+                    localStorage.setItem("token", fakeToken);
+                });*/
+        });
+    });
+</script>
+
+</html>
+
+<!--  
+
+
+
+-->

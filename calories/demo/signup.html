@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>註冊</title>
+    <meta charset="UTF-8">
+</head>
+<style>
+    h1{
+        font-family: 'Lobster', cursive;
+        font-size: 50px;
+        position: absolute;
+        top:-30px;
+        left:30px; 
+        color: black ;
+    }
+    body {
+        margin: 0px;
+        padding: 0px;
+        background-image: url('background2.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+    }
+
+    div {
+        padding: 5px;
+        width: 100%;
+    }
+
+    .button {
+        border: none;
+        color: black;
+        padding: 5px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+    a {
+        color: brown;
+        text-decoration: none;
+    }
+   /* .data {
+        width: 100%;
+        height: 500px;
+        line-height: 40px;
+        margin-top: 50px;
+        background-color:red;
+    }
+    .data-title {
+        float: left;
+        width: 40%;
+        /* Label寬度，視情況調整 *//*
+        background-color:blue;
+    }
+    .data-items {
+        float: left;
+        width: 10%;
+        background-color:yellow;
+    }
+    .AlignRight {
+        text-align: right;
+        background-color:pink;
+    }*/
+
+    .sign{
+        text-align: right;
+        position: relative;
+        background-color: rgba(250, 224, 121, 0.5);
+        left: 50%;
+        width: 30%;
+        border-radius:15px;
+        transform: translate(-50%, 30%);
+    }
+    .data{
+       margin-right: 150px;
+    }
+
+    
+    nav ul {
+        background-color: rgba(250, 224, 121, 0);
+        list-style: none;
+        /* 移除項目符號 */
+        margin: 0;
+        padding: 0;
+    }
+
+    nav a {
+        color: black;
+        /* 移除超連結顏色 */
+        display: block;
+        /* 讓 <a> 填滿 <li> */
+        font-size: 1.2rem;
+        padding: 25px;
+        text-decoration: none;
+        /* 移除超連結底線 */
+    }
+
+    nav a:hover { 
+        color: #e3c887;
+        text-decoration:underline;
+    }
+
+    .flex-nav {
+        display: flex;
+        justify-content: flex-end; 
+    }
+</style>
+
+<body>
+    <h1>Calories Calculate</h1>
+    <!--
+   <div class="data ">
+        <div class="data-title ">
+            <div class="AlignRight">
+                <label for="account">E-mail:</label><br>
+                <label for="account">帳號:</label><br>
+                <label for="pwd">密碼:</label><br>
+                <label for="pwd2">確認密碼:</label>
+            </div>
+        </div>
+        <div class="data-items">
+            <input type="text" id="email" name="email"><br>
+            <input type="text" id="account" name="account"><br>
+            <input type="password" id="pwd" name="pwd"><br>
+            <input type="password" id="pwd2" name="pwd2"><br>
+            <button class="button">註冊</button>
+        </div>
+    </div>
+    -->
+    <div style="margin-top: 20px;">
+        <nav style="margin-right: 50px;">
+            <ul class="flex-nav">
+                <li><a href="#">新增食物</a></li>
+                <li><a href="#">我的食物</a></li>
+                <li><a href="#">新增紀錄</a></li>
+                <li><a href="#">統計報表</a></li>
+                <li><a href="signup.html">註冊</a></li>
+            </ul>
+        </nav>
+    </div>
+
+
+    <div class="sign">
+        <form><br>
+            <span class="data"><label for="email">E-mail:</label>
+                <input type="text" id="email" name="email"><br></span>
+                <br>
+            <span class="data"><label for="account">帳號:</label>
+                <input type="text" id="account" name="account"><br></span>
+                <br>
+            <span class="data"><label for="pwd">密碼:</label>
+                <input type="password" id="pwd" name="pwd"><br></span>
+                <br>
+            <span class="data"><label  for="pwd2">確認密碼:</label>
+                <input type="password" id="pwd2" name="pwd2"><br></span>
+                
+            <input  class="button" id="submit" style="margin-right: 60px;" type="button" value="註冊">
+            
+        </form>
+        <br>
+       
+    </div>
+</body>
+
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="./sha3.min.js"></script>
+<script>
+
+function checkForm(ac, pw, pw2) {
+    if(ac.length < 4 || ac.length > 32) {
+        alert("帳號長度錯誤");
+        return false;
+    }
+    if (pw.length < 8 || pw.length > 32 ) {
+        alert("密碼長度錯誤");
+        return false;
+    }
+    if(pw != pw2) {
+        alert("確認密碼錯誤");
+        return false;
+    }
+    return true;
+}
+
+
+
+$(document).ready(function(){
+    $("#submit").click(function(){
+        ac = $("#account").val()
+        em = $("#email").val()
+        pw = $("#pwd").val()
+        pw2 = $("#pwd2").val()
+        if (checkForm(ac, pw, pw2)){
+            hashed = sha3_256(pw);
+            $.post("/signup",
+            {
+                account: ac,
+                password: hashed,
+                email: em
+            },
+            function(data, status){
+                if(data == "success") {
+                    alert("成功註冊");
+                    // 跳到登入後
+                } else {
+                    alert("註冊失敗");
+                }
+            });
+        }
+    });
+});
+</script>
