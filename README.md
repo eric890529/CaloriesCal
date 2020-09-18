@@ -22,7 +22,7 @@
 ### 我的食物
 先用removefood(array, callback, id)把增加新紀錄前的食物刪除，不然會出現重複的食物疊起來，再用callback方式call myFood(array)，把食物經由找id=myfood的方式，把資料已div標籤的方式顯示在上面。
 
-### 我的紀錄
+### 新增紀錄
 > 點擊我的紀錄時，會先把選meal的選單隱藏起來，再用removefood(array, callback, id)把增加新紀錄前的食物刪除，不然會出現重複的食物疊起來。
 ```
 $("#MyRecord").click(function () {
